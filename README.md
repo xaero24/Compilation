@@ -1,4 +1,4 @@
-Compilation
+# Compilation
 
 A simple compiler in C for a simple language.
 
