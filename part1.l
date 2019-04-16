@@ -1,0 +1,36 @@
+%%
+"bool" return BOOL
+"char" return CHAR
+"int" return INT
+"real" return REAL
+"string" return STRING
+"int*" return INTPTR
+"char*" return CHARPTR
+"real*" return REALPTR
+"if" return IF
+"else" return ELSE
+"while" return WHILE
+"for" return FOR
+"var" return VAR
+"func" return FUNC
+"proc" return PROC
+"return" return RETURN
+"null" return NUL
+"&&" return AND
+"/" return DIV
+"=" return ASSGN
+"==" return EQUAL
+">" return GR
+">=" return GREQ
+"<" return LS
+"<=" return LSEQ
+"-" return SUB
+"!" return NOT
+"!=" return UNEQAL
+"||" return OR
+"+" return ADD
+"*" return MUL
+"&" return BWAND
+"^" return PWR
+. return yytext[0]
+%%
