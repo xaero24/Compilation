@@ -30,7 +30,13 @@
 "||" return OR
 "+" return ADD
 "*" return MUL
-"&" return BWAND
-"^" return PWR
+"&" return ADDROF
+"^" return DEREF
+\n ;
+
+[a-zA-Z][a-zA-Z0-9_]* return ID;
+-?[1-9][0-9]*|-?0 return INTVAL
+0(x|X)[0-9A-Fa-f]+ return HEXVAL;
+-?[0-9]*.[0-9]*|(+|-)?[0-9]*.[0-9]*[Ee](+|-)?[1-9][0-9]* return REALVAL
 . return yytext[0]
 %%
