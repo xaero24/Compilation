@@ -1,1 +1,6 @@
 SANDBOX/**
+lex.yy.c
+part01.l
+part01.y
+part1
+y.tab.c

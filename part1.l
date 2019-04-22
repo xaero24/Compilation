@@ -1,42 +1,70 @@
-%%
-"bool" return BOOL
-"char" return CHAR
-"int" return INT
-"real" return REAL
-"string" return STRING
-"int*" return INTPTR
-"char*" return CHARPTR
-"real*" return REALPTR
-"if" return IF
-"else" return ELSE
-"while" return WHILE
-"for" return FOR
-"var" return VAR
-"func" return FUNC
-"proc" return PROC
-"return" return RETURN
-"null" return NUL
-"&&" return AND
-"/" return DIV
-"=" return ASSGN
-"==" return EQUAL
-">" return GR
-">=" return GREQ
-"<" return LS
-"<=" return LSEQ
-"-" return SUB
-"!" return NOT
-"!=" return UNEQAL
-"||" return OR
-"+" return ADD
-"*" return MUL
-"&" return ADDROF
-"^" return DEREF
-\n ;
 
+%{
+	int counter=1;
+        #include <string.h> 
+%}
+%x String 
+%x comment
+%%
+[ ]+ ;
+"bool" return BOOL;
+"char" return CHAR;
+"int" return INT;
+"string" return STRING;
+"intptr" return INTPTR;
+"charptr" return CHARPTR;
+"void" return VOID;
+"if" return IF;
+"else" return ELSE;
+"do" return DO;
+"while" return WHILE;
+"proc" return PROC;
+"func" return FUNC;
+"for" return FOR;
+"main" return MAIN;
+"return" return RETURN;
+"true" return BOOLTRUE;
+"false" return BOOLFALSE;
+"null" return CSNULL;
+"var" return VAR;
+"=" return ASSIGNMENT;
+"&&" return AND;
+\/ return DIVISION;
+"==" return EQUAL;
+">" return GREATER;
+">=" return GREATEREQUAL;
+"<" return LESS;
+"<=" return LESSEQUAL;
+"-" return MINUS;
+"!" return NOT;
+"!=" return NOTEQUAL;
+"||" return OR;
+"+" return PLUS;
+"*" return MULTI;
+"&" return ADDRESS;
+"^" return DEREFERENCE;
+";" return SEMICOLON;
+":" return COLON;
+"," return COMMA;
+"{" return LEFTBRACE;
+"}" return RIGHTBRACE;
+"(" return LEFTPAREN;
+")" return RIGHTPAREN;
+"[" return LEFTBRACKET;
+"]" return RIGHTBRACKET;
+"%" return PERCENT;
+"'"  return QUOTES;
+"/%" BEGIN comment;
+<comment>[^\n] ;
+<comment>\n     ;/*counter++;*/
+<comment>"%/" BEGIN 0;
 [a-zA-Z][a-zA-Z0-9_]* return ID;
--?[1-9][0-9]*|-?0 return INTVAL
-0(x|X)[0-9A-Fa-f]+ return HEXVAL;
--?[0-9]*.[0-9]*|(+|-)?[0-9]*.[0-9]*[Ee](+|-)?[1-9][0-9]* return REALVAL
-. return yytext[0]
+0|-?[1-9][0-9]* return INTEGER;
+-?(([0-9]+)|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) return REAL;
+[\'].[\'] return CHAR;
+[\"][^\"]*[\"] return STRING;
+0(x|X)[0-9A-Fa-f]+ return HEX;
+\n      ;counter++;
+[ \t] ;
+. return yytext[0]; ;
 %%
