@@ -11,6 +11,7 @@
 "char" return CHAR;
 "int" return INT;
 "string" return STRING;
+"real" return REAL;
 "intptr" return INTPTR;
 "charptr" return CHARPTR;
 "void" return VOID;
@@ -21,7 +22,7 @@
 "proc" return PROC;
 "func" return FUNC;
 "for" return FOR;
-"main" return MAIN;
+"Main" return MAIN;
 "return" return RETURN;
 "true" return BOOLTRUE;
 "false" return BOOLFALSE;
@@ -59,7 +60,8 @@
 <comment>\n     ;/*counter++;*/
 <comment>"%/" BEGIN 0;
 [a-zA-Z][a-zA-Z0-9_]* return ID;
-0|-?[1-9][0-9]* return INTEGER;
+0|[1-9][0-9]* return INTEGER_POS;
+-[1-9][0-9]* return INTEGER_NEG;
 -?(([0-9]+)|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) return REAL;
 [\'].[\'] return CHAR;
 [\"][^\"]*[\"] return STRING;
