@@ -1,4 +1,13 @@
 all:
-	lex part1.l
-	yacc part1.y
-	cc -o part1 y.tab.c -ll -Ly
+	lex scanner.l
+	yacc -d parser.y --debug --verbose 
+	cc -o part2 y.tab.c -Ly -Ll -lfl
+	./part2 <trycode.txt
+
+	lex scanner.l
+	yacc -d parser.y --debug --verbose 
+	cc -o part2 y.tab.c -Ly -Ll -lfl
+	./part2 <trycode1.txt
+
+
+	
