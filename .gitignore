@@ -5,3 +5,6 @@ part01.y
 part1
 y.tab.c
 out.txt
+*.doc
+*.docx
+*.zip

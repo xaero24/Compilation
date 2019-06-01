@@ -197,6 +197,7 @@ StringDeclare:
 variable_declare_statements:
             VAR id COMMA variable_declare_statements    {$$ = mknode ("(VAR", $2, $4, NULL, ")"); }
           | id COLON varType {$$ = mknode ("", $1, $3, NULL, ""); }
+          | id COMMA variable_declare_statements {$$ = mknode ("", $1, $3, NULL, ""); }
           | VAR id COLON varType {$$ = mknode ("(VAR", $2, $4, NULL, ")"); }
           | STRING StringDeclare {$$ = mknode ("(VAR", $2, NULL, NULL, ")"); };
   
